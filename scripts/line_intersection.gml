@@ -1,14 +1,14 @@
-//takes 4 coordinates of 2 lines
-// can be optimised
-// returns array of x,y,flag for is intersecting
-var line_a_xx1 = argument0[X] ,
-line_a_yy1 = argument0[Y] ,
-line_a_xx2 = argument1[X] ,
-line_a_yy2 = argument1[Y] ,
-line_b_xx1 = argument2[X] ,
-line_b_yy1 = argument2[Y] ,
-line_b_xx2 = argument3[X] ,
-line_b_yy2 = argument3[Y];
+//take 2 lines as a argument
+// returns point, point[X] as false if not intersecting
+
+var line_a_xx1 = argument0[X1] ,
+line_a_yy1 = argument0[Y1] ,
+line_a_xx2 = argument0[X2] ,
+line_a_yy2 = argument0[Y2] ,
+line_b_xx1 = argument1[X1] ,
+line_b_yy1 = argument1[Y1] ,
+line_b_xx2 = argument1[X2] ,
+line_b_yy2 = argument1[Y2];
 
 
 var I = new_point(0,0); 

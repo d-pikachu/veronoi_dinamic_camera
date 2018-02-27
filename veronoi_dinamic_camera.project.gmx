@@ -15,8 +15,13 @@
     <script>scripts\point_in_rect.gml</script>
     <script>scripts\point_in_rect_new.gml</script>
     <script>scripts\point_intersection.gml</script>
-    <script>scripts\new_point.gml</script>
-    <script>scripts\new_rect.gml</script>
+    <script>scripts\line_intersection.gml</script>
+    <scripts name="shapes">
+      <script>scripts\new_line.gml</script>
+      <script>scripts\new_rect.gml</script>
+      <script>scripts\new_point.gml</script>
+      <script>scripts\draw_line_pika.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\player_a</object>
@@ -29,10 +34,10 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_test_points_intersect</room>
     <room>rooms\room_test</room>
     <rooms name="test_rooms">
       <room>rooms\rm_rect_test</room>
-      <room>rooms\rm_test_points_intersecr</room>
       <room>rooms\rm_point_struct_test</room>
     </rooms>
   </rooms>

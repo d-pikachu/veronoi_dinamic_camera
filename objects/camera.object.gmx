@@ -26,9 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>///Initialize
-var players_mid = new_point(0,0);
 var split_angle = 0;
+
+var players_mid = new_point(0,0);
 var frame_mid = new_point(0,0)
+
+var p1_pos = new_point(0,0)
+var p2_pos = new_point(0,0)
 </string>
           </argument>
         </arguments>
@@ -53,7 +57,7 @@ var frame_mid = new_point(0,0)
             <kind>1</kind>
             <string>//////STEP
 ////step vars
-//middle of camera frame (for spliting) ***change to real values
+//middle of camera frame (for spliting) ***change!!! to real values
 frame_mid[X] = W/2;
 frame_mid[Y] = H/2;
 
@@ -61,6 +65,11 @@ frame_mid[Y] = H/2;
 players_mid[X] = (player_a.x + player_b.x)/2;
 players_mid[Y] = (player_a.y + player_b.y)/2;
 
+//point intersection split line and line between players
+p1_pos[X] = player_a.x
+p1_pos[Y] = player_a.y
+p2_pos[X] = player_b.x
+p2_pos[Y] = player_b.y
 /*-----------------------------------------------------------------------------*/
 
 //////split stuff
@@ -69,11 +78,11 @@ players_mid[Y] = (player_a.y + player_b.y)/2;
 split_angle = point_direction(player_a.x,player_a.y,player_b.x,player_b.y) + 90;
 
 //interseting points on frame
-rect_point_a = rect_intersect_from_angle(frame_mid,split_angle);
-rect_point_b = rect_intersect_from_angle(frame_mid,split_angle+180);
+rect_point_a = rect_intersect_from_angle(frame_mid , split_angle);
+rect_point_b = rect_intersect_from_angle(frame_mid , split_angle+180);
 
-//point intersecting on split line from p1-p2 line
-intersection_point = point_intersection(player_a.x,player_a.y,player_b.x,player_b.y,rect_point_a[0],rect_point_a[1],rect_point_b[0],rect_point_b[1])
+//point intersection split line and line between players 
+intersection_point = point_intersection(p1_pos , p2_pos , rect_point_a , rect_point_b)
 </string>
           </argument>
         </arguments>
@@ -134,8 +143,8 @@ if should_split(){
     draw_line(rect_point_a[X] ,rect_point_a[Y],rect_point_b[X] ,rect_point_b[Y]);
 }
 
-if intersection_point[2] == true{
-    draw_rect_mini(intersection_point[0],intersection_point[1]);
+if intersection_point[X] != false{
+    draw_rect_mini(intersection_point[X],intersection_point[Y]);
 }
 
 //players seperation range

@@ -8,6 +8,32 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var dummy_point = new_point(0,0);
+
+line_a = new_line(dummy_point,dummy_point);
+line_b = new_line(dummy_point,dummy_point);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,22 +51,37 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>line_a_xx1 = x
-line_a_yy1 = y-100
-line_a_xx2 = x
-line_a_yy2 = y+100
-line_b_xx1 = x-200
-line_b_yy1 = y
-line_b_xx2 = mouse_x
-line_b_yy2 = mouse_y
+            <string>/*line_1_a[X] = x
+line_1_a[Y] = y-100
 
-draw_line(line_a_xx1,line_a_yy1,line_a_xx2,line_a_yy2)
-draw_line(line_b_xx1,line_b_yy1,line_b_xx2,line_b_yy2)
+line_1_b[X] = x
+line_1_b[Y] = y+100
 
-var intersection_point = point_intersection(line_a_xx1,line_a_yy1,line_a_xx2,line_a_yy2,line_b_xx1,line_b_yy1,line_b_xx2,line_b_yy2)
-//if intersection_point[0]!= -1 and intersection_point[1]!= -1{
-if intersection_point[2]== true{
-    draw_rect_mini(intersection_point[0],intersection_point[1])}
+line_2_a[X] = x-200
+line_2_a[Y] = y
+
+line_2_b[X] = mouse_x
+line_2_b[Y] = mouse_y*/
+
+
+line_a[X1] = x
+line_a[Y1] = y-100
+line_a[X2] = x
+line_a[Y2] = y+100
+
+line_b[X1] = x-200
+line_b[Y1] = y
+line_b[X2] = mouse_x
+line_b[Y2] = mouse_y
+
+draw_line_pika(line_a)
+draw_line_pika(line_b)
+
+intersection_point = line_intersection(line_a,line_b)
+
+if intersection_point[0]!= false{
+    draw_rect_mini(intersection_point[0],intersection_point[1])
+}
 </string>
           </argument>
         </arguments>
