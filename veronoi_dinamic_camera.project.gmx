@@ -25,6 +25,7 @@
       <script>scripts\draw_point_square.gml</script>
       <script>scripts\draw_frame.gml</script>
     </scripts>
+    <script>scripts\poop.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\player_a</object>
