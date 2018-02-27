@@ -56,8 +56,27 @@ splitter = dummy_line
           <argument>
             <kind>1</kind>
             <string>splitter = camera.splitter
+
+Ax = splitter[X1]
+Ay = splitter[Y1]
+Bx = splitter[X2]
+By = splitter[Y2]
+Px = player_b.x
+Py = player_b.y
+
+rr = (Bx-Ax)*(Py-Ay)-(By-Ay)*(Px-Ax)
+
+
 if orientation == HORIZONTAL{
-    //do something
+    if player_b.y&gt;=player_a.y
+        reg = "DOWN"
+    else  
+        reg = "UP"
+} else {
+    if player_b.x&gt;=player_a.x
+        reg = "RIGHT"
+    else  
+        reg = "LEFT"
 }
 </string>
           </argument>
@@ -95,10 +114,10 @@ switch(region){
     case RIGHT : reg = "RIGHT"; break;
     case DOWN : reg = "DOWN"; break;
     case LEFT : reg = "LEFT";
-}
+}*/
 
-draw_text(10,50,"Region : " + reg);*/
-
+draw_text(10,50,"Region : " + reg);
+draw_text(10,70,"RR : " + string(rr));
 
 </string>
           </argument>

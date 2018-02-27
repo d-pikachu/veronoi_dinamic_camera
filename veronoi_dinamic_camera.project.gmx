@@ -44,7 +44,7 @@
       <room>rooms\rm_point_struct_test</room>
     </rooms>
   </rooms>
-  <constants number="17">
+  <constants number="19">
     <constant name="W">800</constant>
     <constant name="H">600</constant>
     <constant name="none">noone</constant>
@@ -62,6 +62,8 @@
     <constant name="RIGHT">1</constant>
     <constant name="DOWN">2</constant>
     <constant name="LEFT">3</constant>
+    <constant name="ABOVE">0</constant>
+    <constant name="BELOW">1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
