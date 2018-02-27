@@ -33,6 +33,13 @@ var dummy_point = new_point(0,0);
 var dummy_line = new_point(dummy_point,dummy_point);
 
 splitter = dummy_line
+
+p1 = dummy_point
+p2 = dummy_point
+p3 = dummy_point
+p4 = dummy_point
+
+draw = 1
 </string>
           </argument>
         </arguments>
@@ -66,18 +73,98 @@ Py = player_b.y
 
 rr = (Bx-Ax)*(Py-Ay)-(By-Ay)*(Px-Ax)
 
+p1[X] = splitter[X1]
+p1[Y] = splitter[Y1]
+p2[X] = splitter[X2]
+p2[Y] = splitter[Y2]
 
 if orientation == HORIZONTAL{
-    if player_b.y&gt;=player_a.y
+    if player_b.y&gt;=player_a.y{
         reg = "DOWN"
-    else  
+        
+        p3[X] = 0  
+        p3[Y] = H
+        p4[X] = W  
+        p4[Y] = H
+    }
+    else  {
         reg = "UP"
-} else {
-    if player_b.x&gt;=player_a.x
+        
+        p3[X] = 0  
+        p3[Y] = 0
+        p4[X] = W  
+        p4[Y] = 0
+    }
+} else if orientation == VERTICAL{
+    if player_b.x&gt;=player_a.x{
         reg = "RIGHT"
-    else  
+        
+        p3[X] = W  
+        p3[Y] = 0
+        p4[X] = W  
+        p4[Y] = H
+    }
+    else {
         reg = "LEFT"
+        
+        p3[X] = 0  
+        p3[Y] = 0
+        p4[X] = 0  
+        p4[Y] = H
+    }
 }
+
+if keyboard_check_pressed(vk_space)
+draw = !draw
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///OLD
+/*
+splitter = camera.splitter
+
+Ax = splitter[X1]
+Ay = splitter[Y1]
+Bx = splitter[X2]
+By = splitter[Y2]
+Px = player_b.x
+Py = player_b.y
+
+rr = (Bx-Ax)*(Py-Ay)-(By-Ay)*(Px-Ax)
+
+
+if orientation == HORIZONTAL{
+    if player_b.y&gt;=player_a.y{
+        reg = "DOWN"
+    }
+    else  {
+        reg = "UP"
+    }
+} else {
+    if player_b.x&gt;=player_a.x{
+        reg = "RIGHT"
+    }
+    else {
+        reg = "LEFT"
+    }
+}*/
 </string>
           </argument>
         </arguments>
@@ -119,6 +206,44 @@ switch(region){
 draw_text(10,50,"Region : " + reg);
 draw_text(10,70,"RR : " + string(rr));
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw = should_split() || draw
+if draw{
+draw_set_color(c_blue)
+draw_set_alpha(0.2)
+
+draw_primitive_begin(pr_trianglestrip);
+draw_vertex(p1[X] , p1[Y]);
+draw_vertex(p2[X] , p2[Y]);
+draw_vertex(p3[X] , p3[Y]);
+draw_vertex(p4[X] , p4[Y]);
+draw_vertex(p1[X] , p1[Y]);
+draw_primitive_end();
+
+draw_set_color(c_black)
+draw_set_alpha(1)
+}
 </string>
           </argument>
         </arguments>

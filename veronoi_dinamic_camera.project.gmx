@@ -35,6 +35,7 @@
       <object>objects\line_intersection_test</object>
     </objects>
     <object>objects\test_region</object>
+    <object>objects\o_rect</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_test</room>
