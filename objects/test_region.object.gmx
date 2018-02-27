@@ -25,25 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initialize
-//Dummies
+            <string>orientation = HORIZONTAL
+//region = LEFT
+
+//DUMMIES
 var dummy_point = new_point(0,0);
 var dummy_line = new_point(dummy_point,dummy_point);
 
-var split_angle = 0;
-
-var frame_sect_a = dummy_point;
-var frame_sect_b = dummy_point;
-
-var players_mid = dummy_point;
-var frame_mid = dummy_point;
-
-var p1_pos = dummy_point;
-var p2_pos = dummy_point;
-
-var splitter = dummy_line
-var line_players = dummy_line
-
+splitter = dummy_line
 </string>
           </argument>
         </arguments>
@@ -66,47 +55,10 @@ var line_players = dummy_line
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//////STEP
-////update vars
-//middle of camera frame (for spliting) ***change!!! to real values
-frame_mid[X] = W/2;
-frame_mid[Y] = H/2;
-
-//middle point between players
-players_mid[X] = (player_a.x + player_b.x)/2;
-players_mid[Y] = (player_a.y + player_b.y)/2;
-
-//point intersection split line and line between players
-p1_pos[X] = player_a.x;
-p1_pos[Y] = player_a.y;
-p2_pos[X] = player_b.x;
-p2_pos[Y] = player_b.y;
-
-//line_players
-line_players[X1] = player_a.x
-line_players[Y1] = player_a.y
-line_players[X2] = player_b.x
-line_players[Y2] = player_b.y
-
-/*-----------------------------------------------------------------------------*/
-
-//////split stuff
-
-//splitter angle , added 90 here cause perpendicular 
-split_angle = point_direction(player_a.x,player_a.y,player_b.x,player_b.y) + 90;
-
-//interseting points on frame ***change name!!!
-frame_sect_a = rect_intersect_from_angle(frame_mid , split_angle);
-frame_sect_b = rect_intersect_from_angle(frame_mid , split_angle+180);
-
-//splitter line update
-splitter[X1] = frame_sect_a[X]; 
-splitter[Y1] = frame_sect_a[Y];
-splitter[X2] = frame_sect_b[X];
-splitter[Y2] = frame_sect_b[Y];
-
-//point intersection split line and line between players 
-intersection_point = line_intersection(splitter , line_players)
+            <string>splitter = camera.splitter
+if orientation == HORIZONTAL{
+    //do something
+}
 </string>
           </argument>
         </arguments>
@@ -129,48 +81,25 @@ intersection_point = line_intersection(splitter , line_players)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Debug
-draw_text(10,10,string(split_angle))
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/////////////DRAW CALLS
+            <string>ori = "ERROR"
+switch(orientation){
+    case VERTICAL : ori = "VERTICAL"; break;
+    case HORIZONTAL : ori = "HORIZONTAL";
+}
+draw_text(10,30,"Split : " + ori);
 
-// real middle point between player
-//filled if beyond split length
-draw_circle(players_mid[X],players_mid[Y],5,!should_split());
-
-    
-//rect intersection
-if should_split(){
-    draw_point_square(frame_sect_a , 10);
-    draw_point_square(frame_sect_b , 10);
-    if intersection_point[X] draw_point_square(intersection_point , 10);
-    draw_line_pika(splitter);
+/* not working
+reg = "ERROR"
+switch(region){
+    case TOP : reg = "TOP"; break;
+    case RIGHT : reg = "RIGHT"; break;
+    case DOWN : reg = "DOWN"; break;
+    case LEFT : reg = "LEFT";
 }
 
-//players seperation range
-draw_circle(player_a.x , player_a.y , (W+H)/8 , true)
-draw_circle(player_b.x , player_b.y , (W+H)/8 , true)
+draw_text(10,50,"Region : " + reg);*/
+
+
 </string>
           </argument>
         </arguments>

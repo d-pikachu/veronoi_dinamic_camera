@@ -11,6 +11,7 @@
   <scripts name="scripts">
     <script>scripts\should_split.gml</script>
     <script>scripts\rect_intersect_from_angle.gml</script>
+    <script>scripts\rect_intersect_from_angle_original.gml</script>
     <script>scripts\draw_rect_mini.gml</script>
     <script>scripts\point_in_rect.gml</script>
     <script>scripts\point_in_rect_new.gml</script>
@@ -21,6 +22,7 @@
       <script>scripts\new_rect.gml</script>
       <script>scripts\new_point.gml</script>
       <script>scripts\draw_line_pika.gml</script>
+      <script>scripts\draw_point_square.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -32,16 +34,17 @@
       <object>objects\test_point_struct</object>
       <object>objects\line_intersection_test</object>
     </objects>
+    <object>objects\test_region</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test_points_intersect</room>
     <room>rooms\room_test</room>
     <rooms name="test_rooms">
       <room>rooms\rm_rect_test</room>
+      <room>rooms\rm_test_points_intersect</room>
       <room>rooms\rm_point_struct_test</room>
     </rooms>
   </rooms>
-  <constants number="11">
+  <constants number="17">
     <constant name="W">800</constant>
     <constant name="H">600</constant>
     <constant name="none">noone</constant>
@@ -53,6 +56,12 @@
     <constant name="Y2">3</constant>
     <constant name="WIDTH">4</constant>
     <constant name="HEIGHT">5</constant>
+    <constant name="HORIZONTAL">0</constant>
+    <constant name="VERTICAL">1</constant>
+    <constant name="TOP">0</constant>
+    <constant name="RIGHT">1</constant>
+    <constant name="DOWN">2</constant>
+    <constant name="LEFT">3</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
