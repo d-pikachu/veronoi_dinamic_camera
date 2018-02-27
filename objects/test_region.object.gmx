@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-5</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -40,6 +40,29 @@ p3 = dummy_point
 p4 = dummy_point
 
 draw = 1
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EXPERIMENT SURFACE
+player_b_view = -1
+player_a_view = -1
 </string>
           </argument>
         </arguments>
@@ -82,35 +105,27 @@ if orientation == HORIZONTAL{
     if player_b.y&gt;=player_a.y{
         reg = "DOWN"
         
-        p3[X] = 0  
-        p3[Y] = H
-        p4[X] = W  
-        p4[Y] = H
+        p3 = o_frame.bottom_right
+        p4 = o_frame.bottom_left
     }
     else  {
         reg = "UP"
         
-        p3[X] = 0  
-        p3[Y] = 0
-        p4[X] = W  
-        p4[Y] = 0
+        p3 = o_frame.top_right
+        p4 = o_frame.top_left
     }
 } else if orientation == VERTICAL{
     if player_b.x&gt;=player_a.x{
         reg = "RIGHT"
         
-        p3[X] = W  
-        p3[Y] = 0
-        p4[X] = W  
-        p4[Y] = H
+        p3 = o_frame.top_right
+        p4 = o_frame.bottom_right
     }
     else {
         reg = "LEFT"
         
-        p3[X] = 0  
-        p3[Y] = 0
-        p4[X] = 0  
-        p4[Y] = H
+        p3 = o_frame.top_left
+        p4 = o_frame.bottom_left
     }
 }
 
@@ -210,6 +225,79 @@ draw_text(10,70,"RR : " + string(rr));
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EXPERIMENT SURFACE
+
+if !surface_exists(player_b_view){
+    player_b_view = surface_create(W,H)
+    view_surface_id[0] = player_b_view
+}
+else {
+    surface_set_target(player_b_view)
+    
+    draw_set_color(c_blue)
+    draw_set_alpha(0.05)
+    draw_rectangle(0,0,W,H,false)
+    draw_set_alpha(1)
+    draw_set_color(c_black)
+    
+    surface_reset_target();
+}
+
+if !surface_exists(player_a_view){
+    player_a_view = surface_create(W,H)
+    view_surface_id[1] = player_a_view
+}
+else {
+    surface_set_target(player_a_view)
+    
+    draw_set_color(c_red)
+    draw_set_alpha(0.05)
+    draw_rectangle(0,0,W,H,false)
+    draw_set_alpha(1)
+    draw_set_color(c_black)
+    
+    draw_set_blend_mode(bm_subtract)
+    draw_primitive_begin(pr_trianglestrip);
+    draw_vertex(p1[X] , p1[Y]);
+    draw_vertex(p2[X] , p2[Y]);
+    draw_vertex(p3[X] , p3[Y]);
+    draw_vertex(p4[X] , p4[Y]);
+    draw_vertex(p1[X] , p1[Y]);
+    draw_primitive_end();
+    draw_set_blend_mode(bm_normal)
+    
+    surface_reset_target();
+}
+
+
+/*if keyboard_check(ord('1')) draw_surface(player_a_view,0,0)
+if keyboard_check(ord('2')) draw_surface(player_b_view,0,0)*/
+draw_surface(player_b_view,0,0)
+if should_split() draw_surface(player_a_view,0,0)
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
@@ -228,8 +316,8 @@ draw_text(10,70,"RR : " + string(rr));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw = should_split() || draw
-if should_split(){
+            <string>draw = keyboard_check(vk_space)// should_split()
+if draw{
 draw_set_color(c_blue)
 draw_set_alpha(0.2)
 

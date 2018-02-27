@@ -49,11 +49,32 @@ move_speed = 10
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//x += (keyboard_check(ord('D')) - keyboard_check(ord('A'))) * move_speed
-//y += (keyboard_check(ord('S')) - keyboard_check(ord('W'))) * move_speed
-
-x = mouse_x
-y = mouse_y
+            <string>///MOUSE controls
+//x = mouse_x
+//y = mouse_y
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///keyboard movement
+x += (keyboard_check(vk_right) - keyboard_check(vk_left)) * move_speed
+y += (keyboard_check(vk_down) - keyboard_check(vk_up)) * move_speed
 </string>
           </argument>
         </arguments>

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,25 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Init vars
-//Dummies
-var dummy_point = new_point(0,0);
-var dummy_line = new_point(dummy_point,dummy_point);
+            <string>p1 = new_point(x,y)
+p2 = new_point(mouse_x,mouse_y)
 
-x=0 
-y=0
+ps[0] = p1
+ps[1] = p2
 
-width = W;
-height = H;
-
-middle = dummy_point;
-top_right = dummy_point;
-top_left = dummy_point;
-bottom_left = dummy_point;
-bottom_right = dummy_point;
-
-
-
+t[0] = 123
 </string>
           </argument>
         </arguments>
@@ -66,20 +54,11 @@ bottom_right = dummy_point;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>middle[X] = x+width/2;
-middle[Y] = y+height/2;
+            <string>p1 = new_point(x,y)
+p2 = new_point(mouse_x,mouse_y)
 
-top_right[X]  = x+width;
-top_right[Y] = y;
-
-top_left[X]  = x;
-top_left[Y] = y;
-
-bottom_left[X]  = x;
-bottom_left[Y] = y+height;
-
-bottom_right[X]  = x+width;
-bottom_right[Y] = y+height;
+ps[0] = p1
+ps[1] = p2
 </string>
           </argument>
         </arguments>
@@ -102,8 +81,33 @@ bottom_right[Y] = y+height;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_frame(id , c_red)
-//draw_point_square(middle,10)
+            <string>draw_text(10,10,string(p1))
+temp = ps[0]
+draw_text(10,30,string(temp[0]))
+draw_text(10,50,string(t[0]))
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_line(ps[0][X],ps[0][X],ps[0][X],ps[0][X])
 </string>
           </argument>
         </arguments>

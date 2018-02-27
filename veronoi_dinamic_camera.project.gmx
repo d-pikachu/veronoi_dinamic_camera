@@ -30,21 +30,26 @@
     <object>objects\player_a</object>
     <object>objects\player_b</object>
     <object>objects\camera</object>
+    <object>objects\test_region</object>
+    <object>objects\o_frame</object>
     <objects name="tests">
+      <object>objects\test_surface</object>
       <object>objects\rect_test</object>
       <object>objects\test_point_struct</object>
       <object>objects\line_intersection_test</object>
+      <object>objects\test_points_in_array</object>
     </objects>
-    <object>objects\test_region</object>
-    <object>objects\o_frame</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_test</room>
+    <room>rooms\rm_ori</room>
     <rooms name="test_rooms">
+      <room>rooms\rm_test_points_in_array</room>
       <room>rooms\rm_rect_test</room>
       <room>rooms\rm_test_frame</room>
       <room>rooms\rm_test_points_intersect</room>
       <room>rooms\rm_point_struct_test</room>
+      <room>rooms\rm_test_surface</room>
     </rooms>
   </rooms>
   <constants number="19">

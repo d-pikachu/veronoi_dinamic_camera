@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-11</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -129,6 +129,41 @@ intersection_point = line_intersection(splitter , line_players)
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///DRAW CALLS
+
+// real middle point between player
+//filled if beyond split length
+
+
+    
+//rect intersection
+if should_split(){
+    draw_point_square(frame_sect_a , 10);
+    draw_point_square(frame_sect_b , 10);
+    if intersection_point[X] draw_point_square(intersection_point , 10);
+    draw_line_pika(splitter);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Debug
 draw_text(10,10,string(split_angle))
 </string>
@@ -153,7 +188,7 @@ draw_text(10,10,string(split_angle))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/////////////DRAW CALLS
+            <string>/////////////DRAW CALLS (shifted to gui)(disabled here)
 
 // real middle point between player
 //filled if beyond split length
@@ -161,16 +196,19 @@ draw_circle(players_mid[X],players_mid[Y],5,!should_split());
 
     
 //rect intersection
+/*
 if should_split(){
     draw_point_square(frame_sect_a , 10);
     draw_point_square(frame_sect_b , 10);
     if intersection_point[X] draw_point_square(intersection_point , 10);
     draw_line_pika(splitter);
 }
-
+*/
 //players seperation range
+
 draw_circle(player_a.x , player_a.y , (W+H)/10 , true)
 draw_circle(player_b.x , player_b.y , (W+H)/10 , true)
+draw_line_pika(line_players)
 </string>
           </argument>
         </arguments>
