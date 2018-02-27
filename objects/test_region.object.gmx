@@ -211,34 +211,41 @@ dismid = camera.players_mid
 if should_split(){
     dism1 = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
     disa1 = point_direction(player_a.x,player_a.y,dismid[X],dismid[Y])
-    disp1 = poop(dism1) * (W+H)/8
+    disp1 = poop(dism1 , 0.7) * (W+H)/8
     
     pa_cam_x = player_a.x + lengthdir_x(disp1,disa1) - W/2
     pa_cam_y = player_a.y + lengthdir_y(disp1,disa1) - H/2
     
     dism2 = point_distance(player_b.x,player_b.y,dismid[X],dismid[Y])
     disa2 = point_direction(player_b.x,player_b.y,dismid[X],dismid[Y])
-    disp2 = poop(dism1) * (W+H)/8
+    disp2 = poop(dism1 , 0.7) * (W+H)/8
     
     pb_cam_x = player_b.x  + lengthdir_x(disp2,disa2) - W/2
     pb_cam_y = player_b.y  + lengthdir_y(disp2,disa2) - H/2
 }
 else {
+/*
     pa_cam_x = player_a.x - W/2
     pa_cam_y = player_a.y - H/2
     pb_cam_x = player_b.x - W/2
     pb_cam_y = player_b.y - H/2
+*/
+    
+    pa_cam_x = dismid[X] - W/2
+    pa_cam_y = dismid[Y] - H/2
+    pb_cam_x = dismid[X] - W/2
+    pb_cam_y = dismid[Y] - H/2
 }
 
 /*view_xview[1] = pa_cam_x 
 view_yview[1] = pa_cam_y
 view_xview[0] = pb_cam_x 
 view_yview[0] = pb_cam_y*/
-
-view_xview[1] += (pa_cam_x - view_xview[1]) * 0.1
-view_yview[1] += (pa_cam_y - view_yview[1]) * 0.1
-view_xview[0] += (pb_cam_x - view_xview[0]) * 0.1
-view_yview[0] += (pb_cam_y - view_yview[0]) * 0.1
+ssppdd = 1
+view_xview[1] += (pa_cam_x - view_xview[1]) * ssppdd
+view_yview[1] += (pa_cam_y - view_yview[1]) * ssppdd
+view_xview[0] += (pb_cam_x - view_xview[0]) * ssppdd
+view_yview[0] += (pb_cam_y - view_yview[0]) * ssppdd
 
 
 
@@ -314,15 +321,15 @@ if !surface_exists(player_b_view){
     view_surface_id[0] = player_b_view
 }
 else {
+/*
     surface_set_target(player_b_view)
-    
     draw_set_color(c_blue)
     draw_set_alpha(0.05)
     draw_rectangle(0,0,W,H,false)
     draw_set_alpha(1)
     draw_set_color(c_black)
-    
     surface_reset_target();
+*/
 }
 
 if !surface_exists(player_a_view){
@@ -332,11 +339,11 @@ if !surface_exists(player_a_view){
 else {
     surface_set_target(player_a_view)
     
-    draw_set_color(c_red)
+    /*draw_set_color(c_red)
     draw_set_alpha(0.05)
     draw_rectangle(0,0,W,H,false)
     draw_set_alpha(1)
-    draw_set_color(c_black)
+    draw_set_color(c_black)*/
     
     draw_set_blend_mode(bm_subtract)
     draw_primitive_begin(pr_trianglestrip);
@@ -359,6 +366,42 @@ if should_split() draw_surface(player_a_view,0,0)
 
 
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DYNAMIC WIDTH SPLITTER
+//rect intersection
+changeit = ((W+H)/8) - point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
+if should_split(){
+    //draw_line_pika(splitter);
+    //ww = (poop(changeit , 0.7) * 10) + 1
+    //ww = (liner(changeit , 1))
+    ww = liner(changeit , 5) + 1// * 15
+    splito = camera.splitter
+    //alp = poop(changeit, (W+H)/8)
+    //draw_set_alpha(alp)
+    //ww = min(1,ww)
+    draw_line_width(splito[X1], splito[Y1], splito[X2], splito[Y2], ww);
+    draw_set_alpha(1)
+}
 
 </string>
           </argument>

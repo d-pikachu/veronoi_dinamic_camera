@@ -141,7 +141,7 @@ if should_split(){
     draw_point_square(frame_sect_a , 10);
     draw_point_square(frame_sect_b , 10);
     if intersection_point[X] draw_point_square(intersection_point , 10);
-    draw_line_pika(splitter);
+    //draw_line_pika(splitter);
 }
 
 </string>
