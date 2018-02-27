@@ -228,8 +228,8 @@ draw_text(10,70,"RR : " + string(rr));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw = should_split() || draw
-if draw{
+            <string>//draw = should_split() || draw
+if should_split(){
 draw_set_color(c_blue)
 draw_set_alpha(0.2)
 

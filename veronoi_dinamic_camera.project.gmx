@@ -23,6 +23,7 @@
       <script>scripts\new_point.gml</script>
       <script>scripts\draw_line_pika.gml</script>
       <script>scripts\draw_point_square.gml</script>
+      <script>scripts\draw_frame.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -35,12 +36,13 @@
       <object>objects\line_intersection_test</object>
     </objects>
     <object>objects\test_region</object>
-    <object>objects\o_rect</object>
+    <object>objects\o_frame</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_test</room>
     <rooms name="test_rooms">
       <room>rooms\rm_rect_test</room>
+      <room>rooms\rm_test_frame</room>
       <room>rooms\rm_test_points_intersect</room>
       <room>rooms\rm_point_struct_test</room>
     </rooms>
