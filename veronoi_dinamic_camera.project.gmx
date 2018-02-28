@@ -35,10 +35,10 @@
     <object>objects\player_a</object>
     <object>objects\player_b</object>
     <object>objects\camera</object>
-    <object>objects\test_region</object>
     <object>objects\o_frame</object>
     <objects name="tests">
       <object>objects\test_surface</object>
+      <object>objects\test_region</object>
       <object>objects\rect_test</object>
       <object>objects\test_point_struct</object>
       <object>objects\line_intersection_test</object>

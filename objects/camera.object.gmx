@@ -268,34 +268,6 @@ view_yview[0] += (pb_cam_y - view_yview[0]) * ssppdd
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///DRAW CALLS
-
-if should_split(){
-    draw_circle(frame_sect_a[X],frame_sect_a[Y],8,false);
-    draw_circle(frame_sect_b[X],frame_sect_b[Y],8,false);
-}
-if keyboard_check(vk_space)
-if intersection_point[X] draw_point_square(intersection_point , 10);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///EXPERIMENT SURFACE
 
 if !surface_exists(player_b_view){
@@ -353,7 +325,7 @@ if should_split() draw_surface(player_a_view,0,0)
 
 changeit =  point_distance(player_a.x,player_a.y,dismid[X],dismid[Y]) - ((W+H)/8)
 
-ww = liner(changeit , 5) + 2 // * 15
+ww = liner(changeit , 5) // * 15
 splito = camera.splitter
 alp = poop(changeit, 1)
 
@@ -365,6 +337,34 @@ if should_split(){
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DRAW CALLS
+
+if should_split(){
+    draw_circle(frame_sect_a[X],frame_sect_a[Y],8,false);
+    draw_circle(frame_sect_b[X],frame_sect_b[Y],8,false);
+}
+if keyboard_check(vk_space)
+if intersection_point[X] draw_point_square(intersection_point , 10);
 </string>
           </argument>
         </arguments>
