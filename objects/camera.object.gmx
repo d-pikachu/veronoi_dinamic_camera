@@ -44,6 +44,19 @@ var p2_pos = dummy_point;
 var splitter = dummy_line
 var line_players = dummy_line
 
+
+
+//REGION POINTS
+p1 = dummy_point
+p2 = dummy_point
+p3 = dummy_point
+p4 = dummy_point
+
+draw = 1
+
+//SURFACE
+player_b_view = -1
+player_a_view = -1
 </string>
           </argument>
         </arguments>
@@ -111,6 +124,132 @@ intersection_point = line_intersection(splitter , line_players)
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///REGION POINTS
+
+Ax = splitter[X1]
+Ay = splitter[Y1]
+Bx = splitter[X2]
+By = splitter[Y2]
+Px = player_b.x
+Py = player_b.y
+
+p1[X] = splitter[X1]
+p1[Y] = splitter[Y1]
+p2[X] = splitter[X2]
+p2[Y] = splitter[Y2]
+
+orientation = orientation_from_angle(frame_mid , split_angle);
+
+if orientation == HORIZONTAL{
+    if player_b.y&gt;=player_a.y{
+        reg = "DOWN"
+        
+        p3 = o_frame.bottom_right
+        p4 = o_frame.bottom_left
+    }
+    else  {
+        reg = "UP"
+        
+        p4 = o_frame.top_right
+        p3 = o_frame.top_left
+    }
+} else if orientation == VERTICAL{
+    if player_b.x&gt;=player_a.x{
+        reg = "RIGHT"
+        
+        p3 = o_frame.top_right
+        p4 = o_frame.bottom_right
+    }
+    else {
+        reg = "LEFT"
+        
+        p4 = o_frame.top_left
+        p3 = o_frame.bottom_left
+    }
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///VIEW SEPERATION
+dismid = players_mid
+
+if should_split(){
+    dism1 = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
+    
+    //real mid point
+    disa1 = point_direction(player_a.x,player_a.y,dismid[X],dismid[Y])
+    
+    disp1 = poop(dism1 , 0.7) * (W+H)/8
+    
+    pa_cam_x = player_a.x  - W/2 + lengthdir_x(disp1,disa1)
+    pa_cam_y = player_a.y  - H/2 + lengthdir_y(disp1,disa1) 
+    
+    dism2 = point_distance(player_b.x,player_b.y,dismid[X],dismid[Y])
+    disa2 = point_direction(player_b.x,player_b.y,dismid[X],dismid[Y])
+    disp2 = poop(dism1 , 0.7) * (W+H)/8
+    
+    pb_cam_x = player_b.x  - W/2 + lengthdir_x(disp2,disa2)
+    pb_cam_y = player_b.y  - H/2 + lengthdir_y(disp2,disa2)
+}
+else {
+    
+    pa_cam_x = dismid[X] - W/2
+    pa_cam_y = dismid[Y] - H/2
+    pb_cam_x = dismid[X] - W/2
+    pb_cam_y = dismid[Y] - H/2
+}
+
+ssppdd = 1
+view_xview[1] += (pa_cam_x - view_xview[1]) * ssppdd
+view_yview[1] += (pa_cam_y - view_yview[1]) * ssppdd
+view_xview[0] += (pb_cam_x - view_xview[0]) * ssppdd
+view_yview[0] += (pb_cam_y - view_yview[0]) * ssppdd
+
+
+
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -131,21 +270,101 @@ intersection_point = line_intersection(splitter , line_players)
             <kind>1</kind>
             <string>///DRAW CALLS
 
-// real middle point between player
-//filled if beyond split length
-
-
-    
-//rect intersection
-//if keyboard_check(vk_space)
 if should_split(){
-    draw_point_square(frame_sect_a , 10);
-    draw_point_square(frame_sect_b , 10);
-    
-    //draw_line_pika(splitter);
+    draw_circle(frame_sect_a[X],frame_sect_a[Y],8,false);
+    draw_circle(frame_sect_b[X],frame_sect_b[Y],8,false);
 }
 if keyboard_check(vk_space)
 if intersection_point[X] draw_point_square(intersection_point , 10);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///EXPERIMENT SURFACE
+
+if !surface_exists(player_b_view){
+    player_b_view = surface_create(W,H)
+    view_surface_id[0] = player_b_view
+}
+
+if !surface_exists(player_a_view){
+    player_a_view = surface_create(W,H)
+    view_surface_id[1] = player_a_view
+}
+else {
+    surface_set_target(player_a_view)
+    
+    draw_set_blend_mode(bm_subtract)
+    draw_primitive_begin(pr_trianglestrip);
+    draw_vertex(p1[X] , p1[Y]);
+    draw_vertex(p2[X] , p2[Y]);
+    draw_vertex(p3[X] , p3[Y]);
+    draw_vertex(p4[X] , p4[Y]);
+    draw_vertex(p1[X] , p1[Y]);
+    draw_primitive_end();
+    draw_set_blend_mode(bm_normal)
+    
+    surface_reset_target();
+}
+
+draw_surface(player_b_view,0,0)
+if should_split() draw_surface(player_a_view,0,0)
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DYNAMIC WIDTH SPLITTER
+
+changeit =  point_distance(player_a.x,player_a.y,dismid[X],dismid[Y]) - ((W+H)/8)
+
+ww = liner(changeit , 5) + 2 // * 15
+splito = camera.splitter
+alp = poop(changeit, 1)
+
+if should_split(){
+
+    draw_set_alpha(alp)
+    draw_line_width(splito[X1], splito[Y1], splito[X2], splito[Y2], ww);
+    draw_set_alpha(1)
+}
+
+
 </string>
           </argument>
         </arguments>
@@ -190,29 +409,62 @@ draw_text(10,10,string(split_angle))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/////////////DRAW CALLS (shifted to gui)(disabled here)
+            <string>///DRAW CALLS (shifted to gui)(disabled here)
 
 // real middle point between player
 //filled if beyond split length
 if keyboard_check(vk_space)
 draw_circle(players_mid[X],players_mid[Y],5,!should_split());
 
-    
-//rect intersection
-/*
-if should_split(){
-    draw_point_square(frame_sect_a , 10);
-    draw_point_square(frame_sect_b , 10);
-    if intersection_point[X] draw_point_square(intersection_point , 10);
-    draw_line_pika(splitter);
-}
-*/
+
 //players seperation range
 if keyboard_check(vk_space){
 draw_circle(player_a.x , player_a.y , (W+H)/8 , true)
 draw_circle(player_b.x , player_b.y , (W+H)/8 , true)
 draw_line_pika(line_players)
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///DRAW REGION
+draw = keyboard_check(vk_space)// should_split()
+if draw{
+
+//view offset or relative to view
+vpx = view_xview[0]
+vpy = view_yview[0]
+
+draw_set_color(c_blue)
+draw_set_alpha(0.2)
+
+draw_primitive_begin(pr_trianglestrip);
+draw_vertex(p1[X] + vpx , p1[Y] + vpy);
+draw_vertex(p2[X] + vpx  , p2[Y] + vpy);
+draw_vertex(p3[X] + vpx  , p3[Y] + vpy);
+draw_vertex(p4[X] + vpx  , p4[Y] + vpy);
+draw_primitive_end();
+
+draw_set_alpha(1)
+draw_set_color(c_black)
+}
+
 </string>
           </argument>
         </arguments>

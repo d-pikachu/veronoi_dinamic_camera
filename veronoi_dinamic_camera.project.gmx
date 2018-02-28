@@ -13,7 +13,7 @@
   <scripts name="scripts">
     <script>scripts\should_split.gml</script>
     <script>scripts\rect_intersect_from_angle.gml</script>
-    <script>scripts\rect_intersect_from_angle_original.gml</script>
+    <script>scripts\orientation_from_angle.gml</script>
     <script>scripts\draw_rect_mini.gml</script>
     <script>scripts\point_in_rect.gml</script>
     <script>scripts\point_in_rect_new.gml</script>

@@ -102,7 +102,8 @@ bottom_right[Y] = y+height;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_frame(id , c_red)
+            <string>if keyboard_check(vk_space)
+draw_frame(id , c_red)
 //draw_point_square(middle,10)
 </string>
           </argument>
