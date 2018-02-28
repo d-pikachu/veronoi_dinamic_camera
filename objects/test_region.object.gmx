@@ -87,7 +87,8 @@ player_a_view = -1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>splitter = camera.splitter
+            <string>///REGION POINTS
+splitter = camera.splitter
 
 Ax = splitter[X1]
 Ay = splitter[Y1]
@@ -113,8 +114,8 @@ if orientation == HORIZONTAL{
     else  {
         reg = "UP"
         
-        p3 = o_frame.top_right
-        p4 = o_frame.top_left
+        p4 = o_frame.top_right
+        p3 = o_frame.top_left
     }
 } else if orientation == VERTICAL{
     if player_b.x&gt;=player_a.x{
@@ -126,8 +127,8 @@ if orientation == HORIZONTAL{
     else {
         reg = "LEFT"
         
-        p3 = o_frame.top_left
-        p4 = o_frame.bottom_left
+        p4 = o_frame.top_left
+        p3 = o_frame.bottom_left
     }
 }
 
@@ -210,18 +211,28 @@ dismid = camera.players_mid
 
 if should_split(){
     dism1 = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
+    
+    //real mid point
     disa1 = point_direction(player_a.x,player_a.y,dismid[X],dismid[Y])
+    //screen mid point
+    //disa1 = point_direction(player_a.x-view_xview[1] , player_a.y-view_yview[1] , 
+    //W/2,H/2)
+    
     disp1 = poop(dism1 , 0.7) * (W+H)/8
     
-    pa_cam_x = player_a.x + lengthdir_x(disp1,disa1) - W/2
-    pa_cam_y = player_a.y + lengthdir_y(disp1,disa1) - H/2
+    pa_cam_x = player_a.x  - W/2 + lengthdir_x(disp1,disa1)
+    pa_cam_y = player_a.y  - H/2 + lengthdir_y(disp1,disa1) 
+    /*pa_cam_x = player_a.x  + lengthdir_x(disp1,disa1)
+    pa_cam_y = player_a.y  + lengthdir_y(disp1,disa1) */
     
     dism2 = point_distance(player_b.x,player_b.y,dismid[X],dismid[Y])
     disa2 = point_direction(player_b.x,player_b.y,dismid[X],dismid[Y])
     disp2 = poop(dism1 , 0.7) * (W+H)/8
     
-    pb_cam_x = player_b.x  + lengthdir_x(disp2,disa2) - W/2
-    pb_cam_y = player_b.y  + lengthdir_y(disp2,disa2) - H/2
+    pb_cam_x = player_b.x  - W/2 + lengthdir_x(disp2,disa2)
+    pb_cam_y = player_b.y  - H/2 + lengthdir_y(disp2,disa2)
+    /*pb_cam_x = player_b.x + lengthdir_x(disp2,disa2)
+    pb_cam_y = player_b.y + lengthdir_y(disp2,disa2)*/
 }
 else {
 /*
@@ -241,7 +252,7 @@ else {
 view_yview[1] = pa_cam_y
 view_xview[0] = pb_cam_x 
 view_yview[0] = pb_cam_y*/
-ssppdd = 1
+ssppdd = 0.1
 view_xview[1] += (pa_cam_x - view_xview[1]) * ssppdd
 view_yview[1] += (pa_cam_y - view_yview[1]) * ssppdd
 view_xview[0] += (pb_cam_x - view_xview[0]) * ssppdd
@@ -394,7 +405,7 @@ if should_split(){
     //draw_line_pika(splitter);
     //ww = (poop(changeit , 0.7) * 10) + 1
     //ww = (liner(changeit , 1))
-    ww = liner(changeit , 5) + 1// * 15
+    ww = liner(changeit , 5) // * 15
     splito = camera.splitter
     //alp = poop(changeit, (W+H)/8)
     //draw_set_alpha(alp)
@@ -425,17 +436,31 @@ if should_split(){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw = keyboard_check(vk_space)// should_split()
+            <string>///DRAW REGION
+draw = keyboard_check(vk_space)// should_split()
 if draw{
 draw_set_color(c_blue)
 draw_set_alpha(0.2)
 
+//view offset or relative to view
+vpx = view_xview[0]
+vpy = view_yview[0]
+
 draw_primitive_begin(pr_trianglestrip);
+/*
 draw_vertex(p1[X] , p1[Y]);
 draw_vertex(p2[X] , p2[Y]);
 draw_vertex(p3[X] , p3[Y]);
 draw_vertex(p4[X] , p4[Y]);
 draw_vertex(p1[X] , p1[Y]);
+*/
+
+draw_vertex(p1[X] + vpx , p1[Y] + vpy);
+draw_vertex(p2[X] + vpx  , p2[Y] + vpy);
+draw_vertex(p3[X] + vpx  , p3[Y] + vpy);
+draw_vertex(p4[X] + vpx  , p4[Y] + vpy);
+//draw_vertex(p1[X] + vpx  , p1[Y] + vpy);
+
 draw_primitive_end();
 
 draw_set_color(c_black)

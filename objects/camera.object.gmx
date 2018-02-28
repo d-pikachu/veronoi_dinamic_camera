@@ -137,13 +137,15 @@ intersection_point = line_intersection(splitter , line_players)
 
     
 //rect intersection
+//if keyboard_check(vk_space)
 if should_split(){
     draw_point_square(frame_sect_a , 10);
     draw_point_square(frame_sect_b , 10);
-    if intersection_point[X] draw_point_square(intersection_point , 10);
+    
     //draw_line_pika(splitter);
 }
-
+if keyboard_check(vk_space)
+if intersection_point[X] draw_point_square(intersection_point , 10);
 </string>
           </argument>
         </arguments>
@@ -192,6 +194,7 @@ draw_text(10,10,string(split_angle))
 
 // real middle point between player
 //filled if beyond split length
+if keyboard_check(vk_space)
 draw_circle(players_mid[X],players_mid[Y],5,!should_split());
 
     
@@ -205,10 +208,11 @@ if should_split(){
 }
 */
 //players seperation range
-
+if keyboard_check(vk_space){
 draw_circle(player_a.x , player_a.y , (W+H)/10 , true)
 draw_circle(player_b.x , player_b.y , (W+H)/10 , true)
 draw_line_pika(line_players)
+}
 </string>
           </argument>
         </arguments>
