@@ -252,7 +252,7 @@ else {
 view_yview[1] = pa_cam_y
 view_xview[0] = pb_cam_x 
 view_yview[0] = pb_cam_y*/
-ssppdd = 0.1
+ssppdd = 1
 view_xview[1] += (pa_cam_x - view_xview[1]) * ssppdd
 view_yview[1] += (pa_cam_y - view_yview[1]) * ssppdd
 view_xview[0] += (pb_cam_x - view_xview[0]) * ssppdd
@@ -270,45 +270,6 @@ view_yview[0] += (pb_cam_y - view_yview[0]) * ssppdd
       </action>
     </event>
     <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ori = "ERROR"
-switch(orientation){
-    case VERTICAL : ori = "VERTICAL"; break;
-    case HORIZONTAL : ori = "HORIZONTAL";
-}
-draw_text(10,30,"Split : " + ori);
-
-/* not working
-reg = "ERROR"
-switch(region){
-    case TOP : reg = "TOP"; break;
-    case RIGHT : reg = "RIGHT"; break;
-    case DOWN : reg = "DOWN"; break;
-    case LEFT : reg = "LEFT";
-}*/
-
-draw_text(10,50,"Region : " + reg);
-draw_text(10,70,"RR : " + string(rr));
-
-</string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -400,20 +361,66 @@ if should_split() draw_surface(player_a_view,0,0)
             <kind>1</kind>
             <string>///DYNAMIC WIDTH SPLITTER
 //rect intersection
-changeit = ((W+H)/8) - point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
-if should_split(){
+
+//changeit = ((W+H)/8) - point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
+changeit =  point_distance(player_a.x,player_a.y,dismid[X],dismid[Y]) - ((W+H)/8)
+
+ww = liner(changeit , 5) // * 15
+splito = camera.splitter
+alp = poop(changeit, 1)
+//changeit = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
+//if should_split(){
     //draw_line_pika(splitter);
     //ww = (poop(changeit , 0.7) * 10) + 1
     //ww = (liner(changeit , 1))
-    ww = liner(changeit , 5) // * 15
-    splito = camera.splitter
-    //alp = poop(changeit, (W+H)/8)
-    //draw_set_alpha(alp)
+    draw_set_alpha(alp)
     //ww = min(1,ww)
     draw_line_width(splito[X1], splito[Y1], splito[X2], splito[Y2], ww);
     draw_set_alpha(1)
-}
+//}
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ori = "ERROR"
+switch(orientation){
+    case VERTICAL : ori = "VERTICAL"; break;
+    case HORIZONTAL : ori = "HORIZONTAL";
+}
+draw_text(10,30,"Split : " + ori);
+
+/* not working
+reg = "ERROR"
+switch(region){
+    case TOP : reg = "TOP"; break;
+    case RIGHT : reg = "RIGHT"; break;
+    case DOWN : reg = "DOWN"; break;
+    case LEFT : reg = "LEFT";
+}*/
+
+draw_text(10,50,"Region : " + reg);
+draw_text(10,70,"RR : " + string(rr));
+
+draw_text(10,90,"WW : " + string(ww));
+draw_text(10,110,"Alp : " + string(alp));
 </string>
           </argument>
         </arguments>

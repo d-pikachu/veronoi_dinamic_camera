@@ -29,6 +29,7 @@
     </scripts>
     <script>scripts\poop.gml</script>
     <script>scripts\liner.gml</script>
+    <script>scripts\gradually.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\player_a</object>
