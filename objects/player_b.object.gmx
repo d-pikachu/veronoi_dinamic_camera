@@ -51,6 +51,28 @@ max_speed = 12
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///temp
+dd=0
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///intialize
 move_speed = 15
 </string>
@@ -135,7 +157,11 @@ else {
 }
 
 
+if abs(spdv)&gt;0 || abs(spdh)&gt;0{
 
+dd = point_direction(x, y, x+spdh, y+spdv);
+dd += 270;
+}
 
 x += spdh
 y += spdv
@@ -167,6 +193,46 @@ y += spdv
 /*x += (keyboard_check(vk_right) - keyboard_check(vk_left)) * move_speed
 y += (keyboard_check(vk_down) - keyboard_check(vk_up)) * move_speed*/
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>601</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>9</kind>
+            <script>player_direction</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

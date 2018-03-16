@@ -11,4 +11,3 @@ py = argument5
 
    return (px >= min(xx1, xx2) && px <= max(xx1, xx2)
    and py >= min(yy1, yy2) && py <= max(yy1, yy2))
-

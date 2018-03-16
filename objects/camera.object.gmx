@@ -61,6 +61,29 @@ player_a_view = -1
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///TEMP
+view_w = W
+view_h = H
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -207,24 +230,21 @@ if orientation == HORIZONTAL{
             <kind>1</kind>
             <string>///VIEW SEPERATION
 dismid = players_mid
-
+dism1 = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y]) *1.2
 if should_split(){
-    dism1 = point_distance(player_a.x,player_a.y,dismid[X],dismid[Y])
     
-    //real mid point
     disa1 = point_direction(player_a.x,player_a.y,dismid[X],dismid[Y])
-    
     disp1 = poop(dism1 , 0.7) * (W+H)/8
     
-    pa_cam_x = player_a.x  - W/2 + lengthdir_x(disp1,disa1)
-    pa_cam_y = player_a.y  - H/2 + lengthdir_y(disp1,disa1) 
+    pa_cam_x = player_a.x  - view_w/2 + lengthdir_x(disp1,disa1)
+    pa_cam_y = player_a.y  - view_h/2 + lengthdir_y(disp1,disa1) 
     
-    dism2 = point_distance(player_b.x,player_b.y,dismid[X],dismid[Y])
+    dism2 = point_distance(player_b.x,player_b.y,dismid[X],dismid[Y]) *1.2
     disa2 = point_direction(player_b.x,player_b.y,dismid[X],dismid[Y])
     disp2 = poop(dism1 , 0.7) * (W+H)/8
     
-    pb_cam_x = player_b.x  - W/2 + lengthdir_x(disp2,disa2)
-    pb_cam_y = player_b.y  - H/2 + lengthdir_y(disp2,disa2)
+    pb_cam_x = player_b.x  - view_w/2 + lengthdir_x(disp2,disa2)
+    pb_cam_y = player_b.y  - view_h/2 + lengthdir_y(disp2,disa2)
 }
 else {
     
@@ -232,6 +252,7 @@ else {
     pa_cam_y = dismid[Y] - H/2
     pb_cam_x = dismid[X] - W/2
     pb_cam_y = dismid[Y] - H/2
+    
 }
 
 ssppdd = 1
@@ -240,12 +261,76 @@ view_yview[1] += (pa_cam_y - view_yview[1]) * ssppdd
 view_xview[0] += (pb_cam_x - view_xview[0]) * ssppdd
 view_yview[0] += (pb_cam_y - view_yview[0]) * ssppdd
 
+/*
+view_wview[0] =  view_w 
+view_hview[0] =  view_w */
+//view_hview[0] =  view_w - view_hview[0]) * 0.9
+//view_hview[0] =  view_w - view_hview[0]) * 0.9
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+//
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///[D] VIEW SIZE
+//size
+/*
+changeit =  point_distance(player_a.x,player_a.y,dismid[X],dismid[Y]) - ((W+H)/8)
+
+ww = liner(changeit , 1)
+
+
+
+if should_split(){
+pp = 40
+view_wa = ww * (W/pp)
+view_ha = ww * (H/pp)
+}
+else {
+view_wa = 0
+view_ha = 0
+}
+
+view_w = W + view_wa
+view_h = H + view_ha
+
+//view_siz
+view_wview[0] =  view_w 
+view_hview[0] =  view_h
+view_wview[1] =  view_w 
+view_hview[1] =  view_h
+*/
 </string>
           </argument>
         </arguments>
@@ -386,7 +471,7 @@ if intersection_point[X] draw_point_square(intersection_point , 10);
           <argument>
             <kind>1</kind>
             <string>///Debug
-draw_text(10,10,string(split_angle))
+draw_text(10,10,string(dism1 ))
 </string>
           </argument>
         </arguments>

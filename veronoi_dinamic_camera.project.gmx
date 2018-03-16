@@ -5,7 +5,10 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\HG</sprite>
+    <sprite>sprites\MD</sprite>
+  </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
@@ -30,6 +33,7 @@
     <script>scripts\poop.gml</script>
     <script>scripts\liner.gml</script>
     <script>scripts\gradually.gml</script>
+    <script>scripts\player_direction.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\player_a</object>
@@ -57,7 +61,7 @@
       <room>rooms\rm_test_surface</room>
     </rooms>
   </rooms>
-  <constants number="19">
+  <constants number="20">
     <constant name="W">800</constant>
     <constant name="H">600</constant>
     <constant name="none">noone</constant>
@@ -77,6 +81,7 @@
     <constant name="LEFT">3</constant>
     <constant name="ABOVE">0</constant>
     <constant name="BELOW">1</constant>
+    <constant name="NIL">-1</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
